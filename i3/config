@@ -254,3 +254,6 @@ exec protonvpn
 # Custom bindings
 bindsym $mod+F1 exec firefox
 bindsym $mod+F2 exec brave-browser
+
+# Wallpaper
+exec nitrogen --restore
