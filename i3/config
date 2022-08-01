@@ -107,10 +107,10 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal"
-set $ws2 "2: Firefox"
+set $ws2 "2: Web"
 set $ws3 "3: Code"
-set $ws4 "4: Brave"
-set $ws5 "5: ProtonVPN"
+set $ws4 "4"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -214,22 +214,30 @@ set_from_resource $cyan2 color14 #afd7ff
 
 # white
 set_from_resource $white1 color7 #4E4E4E
-set_from_resource $white2 color15 #e8e8ea§z
+set_from_resource $white2 color15 #e8e8ea
+
+# Window border colors
+client.focused          $blue1 $blue1 $blue1 $blue1 $blue1
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    i3bar_command i3bar --transparency    
+
     status_command i3blocks
     
     position top
 
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango:DejaVu Sans Mono Bold 10
+
     colors {
-        background $white2
+        background #FFFFFFBF
         statusline $black2
         separator $black2
 
         #                  border background text
-        focused_workspace  $background $blue1 #FFFFFF
+        focused_workspace  $background $blue1 $white2
         active_workspace   $white2 $white2 $black2
         inactive_workspace $white1 $white2 $black2
         urgent_workspace   $red1 $red1 $white2
@@ -237,23 +245,18 @@ bar {
     }
 }
 
-# Define startup applications for workspaces
-assign [class="Firefox-esr"] $ws2
+# Define default apps for workspaces
+assign [class="Brave-browser"] $ws2
 assign [class="Code"] $ws3
-assign [class="Brave-browser"] $ws4
-assign [class="Protonvpn"] $ws5
 
 # Define window border style
-default_border pixel
-
-# Startup applications
-exec i3-sensible-terminal
-exec firefox
-exec protonvpn
+default_border pixel 2
 
 # Custom bindings
-bindsym $mod+F1 exec firefox
-bindsym $mod+F2 exec brave-browser
+bindsym $mod+b exec brave-browser
 
 # Wallpaper
 exec nitrogen --restore
+
+# Picom for terminal transparency
+exec_always picom -b
