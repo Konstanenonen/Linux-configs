@@ -38,7 +38,7 @@ markup=none
 [volume]
 #label=♪
 label=VOL
-interval=once
+interval=30
 signal=10
 #STEP=5%
 
@@ -50,11 +50,11 @@ label=MEM
 separator=false
 interval=30
 
-[memory]
-label=SWAP
-instance=swap
-separator=false
-interval=30
+#[memory]
+#label=SWAP
+#instance=swap
+#separator=false
+#interval=30
 
 # Disk usage
 #
@@ -106,7 +106,7 @@ min_width=CPU 100.00%
 [battery]
 label=BAT
 #label=⚡
-interval=30
+interval=10
 
 # Date Time
 #
